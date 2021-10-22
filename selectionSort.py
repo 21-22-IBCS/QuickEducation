@@ -8,6 +8,9 @@
 
 Input: unsorted list (make it up)
 Output: return sorted list '''
+
+import time
+import random
 def sort(x):
     f = 0
     #first value to compare it to
@@ -30,10 +33,32 @@ def sort(x):
         
 
 def main():
+    diffList = []
+    for i in range(10):
 
-    Ahh = [17, 3, 23, 14, 11, 18, 12, 7, 123]
-    print(Ahh)
-    print(sort(Ahh))
+
+
+        
+        Ahh = []
+        n = 500
+
+        for i in range(n):
+            Ahh.append(random.randint(1,n))
+              
+        start = time.time()
+        results = sort(Ahh)
+        stop = time.time()
+        diff = stop - start
+        diffList.append(diff)
+    print(diffList)
+    total = 0
+    for dif in diffList:
+        total = total + dif
+    avgTime = total/10
+    print("\n The average time to Selection Sort this list was " + str(avgTime) + " seconds!")
+    
+    print(results)
+        
  
 if __name__ == "__main__":
     main()
