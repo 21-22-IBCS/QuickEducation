@@ -35,7 +35,44 @@ def darken(cats):
 
             cats.setPixel(x,y, color_rgb(r,g,b))
 def blurr(cats):
-    return None
+    for x in range (430):
+        for y in range (497):
+
+            pixel = cats.getPixel(x,y)
+        
+            if x+1 > 429:
+                r = pixel[0]
+                g = pixel[1]
+                b = pixel[2]               
+
+            elif y+1 > 496:
+                r = pixel[0]
+                g = pixel[1]
+                b = pixel[2]                
+
+            elif x-1 < 0:
+                r = pixel[0]
+                g = pixel[1]
+                b = pixel[2]               
+
+            elif y-1 < 0:
+                r = pixel[0]
+                g = pixel[1]
+                b = pixel[2]
+              
+            else:
+                
+                pixel2 = cats.getPixel(x+1,y)
+                pixel3 = cats.getPixel(x, y+1)
+                pixel4 = cats.getPixel(x-1, y)
+                pixel5 = cats.getPixel(x, y-1)
+
+                r = (pixel[0] + pixel2[0] + pixel3[0] + pixel4[0] + pixel5[0])//5
+                g = (pixel[1] + pixel2[1] + pixel3[1] + pixel4[1] + pixel5[1])//5
+                b = (pixel[2] + pixel2[2] + pixel3[2] + pixel4[2] + pixel5[2])//5
+
+                cats.setPixel((x),(y),color_rgb(r,g,b))
+                
 def contrast(cats):
 
      for x in range(430):
@@ -74,7 +111,19 @@ def contrast(cats):
             
             cats.setPixel(x,y, color_rgb(r,g,b))
 def specialFilter(cats):
-    return None
+     for x in range (430):
+        for y in range (497):
+            pixel = cats.getPixel(x,y)
+            r = pixel[0] + 46
+            g = 0
+            b = pixel[0] + 46
+            if r + 76 > 255:
+                r = 255
+            if g + 6 > 255:
+                g = 255
+            if b + 70 > 255:
+                b = 255
+            cats.setPixel(x,y,color_rgb(r,g,b))   
 def main():
 
     win = GraphWin("Image Editor", 800, 600)
